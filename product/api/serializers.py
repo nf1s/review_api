@@ -10,22 +10,22 @@ from reviews.models import Review, Company, Product
 class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
-        fields = ['pk', 'name']
-        read_only_fields = ['pk']
+        fields = ['pk', 'name', 'user', 'products']
+        read_only_fields = ['pk', 'user', 'products']
 
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ['pk', 'name', 'company']
-        read_only_fields = ['pk', 'company']
+        fields = ['pk', 'name', 'company', 'reviews']
+        read_only_fields = ['pk', 'reviews']
 
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = ['pk', 'product', 'comment', 'stars', 'date']
-        read_only_fields = ['pk', 'date', 'product']
+        read_only_fields = ['pk', 'date']
 
     def validate_stars(self, value):
         if 0 < value <= 5:
