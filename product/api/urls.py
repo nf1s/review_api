@@ -10,9 +10,7 @@ from django.conf.urls import url
 
 urlpatterns = [
     url(r'^company/(?P<pk>\d+)/$', CompanyRudView.as_view(), name='company-rud'),
-    url(r'^product/(?P<pk>\d+)/$', ProductRudView.as_view(), name='product-rud'),
-    url(r'^review/(?P<pk>\d+)/$', ReviewRudView.as_view(), name='review-rud'),
+    url(r'^product=(?P<product_id>\d+)&review=(?P<review_id>\d+)/$', ProductRudView.as_view(), name='product-rud'),
     url(r'^company/$', CompanyAPIView.as_view(), name='company-create'),
     url(r'^product/$', ProductAPIView.as_view(), name='product-create'),
-    url(r'^review/$', ReviewAPIView.as_view(), name='review-create'),
 ]
