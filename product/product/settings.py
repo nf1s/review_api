@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'reviews',
-
+    'rest_framework',
     'crispy_forms',
 
     'django.contrib.admin',
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'product.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['product/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
