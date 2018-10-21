@@ -10,7 +10,6 @@ from rest_framework.permissions import IsAdminUser
 class CompanyAPIView(generics.ListCreateAPIView):
     """
     API view provides rest endpoint to create/list companies
-    Allowed Methods (GET,POST)
     """
     lookup_field = 'pk'
     serializer_class = CompanySerializer
@@ -28,8 +27,7 @@ class CompanyAPIView(generics.ListCreateAPIView):
 
 class CompanyRudView(generics.RetrieveUpdateDestroyAPIView):
     """
-    Company Retrieve/Update/Delete View
-    allowed methods (GET,PUT,DELETE)
+    API view provides a rest endpoint to Retrieve/Update/Delete a company
     """
 
     lookup_field = 'pk'
@@ -49,7 +47,6 @@ class CompanyRudView(generics.RetrieveUpdateDestroyAPIView):
 class ProductAPIView(generics.ListCreateAPIView):
     """
     API view provides rest endpoint to create/list Products
-    Allowed Methods (GET,POST)
     """
     lookup_field = 'pk'
     serializer_class = ProductSerializer
@@ -70,8 +67,7 @@ class ProductAPIView(generics.ListCreateAPIView):
 
 class ProductRudView(generics.RetrieveUpdateDestroyAPIView):
     """
-    Product Retrieve/Update/Delete View
-    allowed methods (GET,PUT,DELETE)
+    API view provides a rest endpoint to Retrieve/Update/Delete a product
     """
     lookup_field = 'pk'
     serializer_class = ProductSerializer
@@ -91,7 +87,6 @@ class ProductRudView(generics.RetrieveUpdateDestroyAPIView):
 class ReviewAPIView(generics.ListCreateAPIView):
     """
     API view provides rest endpoint to create/list Reviews related to a certain product
-    Allowed Methods (GET,POST)
     """
     lookup_field = 'pk'
     serializer_class = ReviewSerializer
@@ -112,7 +107,6 @@ class ReviewAPIView(generics.ListCreateAPIView):
 class ReviewRudView(generics.RetrieveUpdateDestroyAPIView):
     """
      Review Retrieve/Update/Delete View
-     allowed methods (GET,PUT,DELETE)
      """
     lookup_field = 'pk'
     serializer_class = ReviewSerializer
