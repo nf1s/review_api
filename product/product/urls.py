@@ -21,6 +21,6 @@ urlpatterns = [
     url(r'', include('auth.urls')),
     url(r'', include('reviews.urls')),
     url(r'^api/', include('api.urls', namespace='api_v1')),
-    url(r'^api-auth/$', obtain_jwt_token, name='api_login'),
+    url(r'^api/auth/$', obtain_jwt_token, name='api_login'),
     url(r'^admin/', admin.site.urls),
 ]
