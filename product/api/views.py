@@ -53,7 +53,7 @@ class ProductRudView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         user = self.request.user
         company = Company.objects.get(user=user)
-        return company.objects.filter(company=company)
+        return Product.objects.filter(company=company)
 
 # -------------------------- Review Views ------------------------------------ #
 
@@ -63,11 +63,13 @@ class ReviewAPIView(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
 
     def get_queryset(self):
-        user = self.request.user
-        company = Company.objects.get(user=user)
-        product = Product.objects.filter(company=company)
-        print(product)
-        return product.reviews.all()
+        product_id = self.request.path.split("/")[-2]
+        return Review.objects.filter(product=product_id)
+
+    def perform_create(self, serializer):
+        product_id = self.request.path.split("/")[-2]
+        product = Product.objects.get(pk=product_id)
+        serializer.save(product=product)
 
 
 class ReviewRudView(generics.RetrieveUpdateDestroyAPIView):
@@ -75,7 +77,4 @@ class ReviewRudView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ReviewSerializer
 
     def get_queryset(self):
-        user = self.request.user
-        company = Company.objects.get(user=user)
-        product = Product.objects.filter(company=company)
-        return Review.objects.filter(product=product)
+        return Review.objects.all()
