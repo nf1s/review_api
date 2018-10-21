@@ -8,23 +8,38 @@ from reviews.models import Review, Company, Product
 
 
 class CompanySerializer(serializers.ModelSerializer):
+    url = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Company
-        fields = ['pk', 'name', 'user', 'products']
-        read_only_fields = ['pk', 'user', 'products']
+        fields = ['url', 'name']
+        read_only_fields = ['url']
+
+    def get_url(self, obj):
+        request = self.context.get("request")
+        return obj.get_api_url(request=request)
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    url = serializers.SerializerMethodField(read_only=True)
+    company = CompanySerializer(read_only=True)
     class Meta:
         model = Product
-        fields = ['pk', 'name', 'company', 'reviews']
-        read_only_fields = ['pk', 'company', 'reviews']
+        fields = ['url', 'pk', 'name', 'company']
+        read_only_fields = ['pk', 'company']
+
+    def get_url(self, obj):
+        request = self.context.get("request")
+        return obj.get_api_url(request=request)
+
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+
+    url = serializers.SerializerMethodField(read_only=True)
+    product = ProductSerializer(read_only=True)
     class Meta:
         model = Review
-        fields = ['pk', 'product', 'comment', 'stars', 'date']
+        fields = ['url', 'pk', 'product', 'comment', 'stars', 'date']
         read_only_fields = ['pk', 'date', 'product']
 
     def validate_stars(self, value):
@@ -32,3 +47,8 @@ class ReviewSerializer(serializers.ModelSerializer):
             return value
         else:
             raise serializers.ValidationError(" Number of Stars must be a number between 0 and 5")
+
+    def get_url(self, obj):
+        request = self.context.get("request")
+        return obj.get_api_url(request=request)
+

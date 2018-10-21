@@ -14,5 +14,5 @@ urlpatterns = [
     url(r'^review/(?P<pk>\d+)/$', ReviewRudView.as_view(), name='review-rud'),
     url(r'^company/$', CompanyAPIView.as_view(), name='company-create'),
     url(r'^product/$', ProductAPIView.as_view(), name='product-create'),
-    url(r'^review/product_id/(?P<pk>\d+)/$', ReviewAPIView.as_view(), name='review-create'),
+    url(r'^product/(?P<pk>\d+)/reviews/$', ReviewAPIView.as_view(), name='review-create'),
 ]

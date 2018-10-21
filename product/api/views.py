@@ -18,6 +18,9 @@ class CompanyAPIView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+    def get_serializer_context(self, *args, **kwargs):
+        return {"request": self.request}
+
 
 class CompanyRudView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'pk'
@@ -26,6 +29,10 @@ class CompanyRudView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         user = self.request.user
         return Company.objects.filter(user=user)
+
+    def get_serializer_context(self, *args, **kwargs):
+        return {"request": self.request}
+
 
 # -------------------------- Product Views ------------------------------------ #
 
@@ -44,6 +51,8 @@ class ProductAPIView(generics.ListCreateAPIView):
         company = Company.objects.get(user=user)
         serializer.save(company=company)
 
+    def get_serializer_context(self, *args, **kwargs):
+        return {"request": self.request}
 
 
 class ProductRudView(generics.RetrieveUpdateDestroyAPIView):
@@ -55,6 +64,10 @@ class ProductRudView(generics.RetrieveUpdateDestroyAPIView):
         company = Company.objects.get(user=user)
         return Product.objects.filter(company=company)
 
+    def get_serializer_context(self, *args, **kwargs):
+        return {"request": self.request}
+
+
 # -------------------------- Review Views ------------------------------------ #
 
 
@@ -63,13 +76,16 @@ class ReviewAPIView(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
 
     def get_queryset(self):
-        product_id = self.request.path.split("/")[-2]
+        product_id = self.request.path.split("/")[-3]
         return Review.objects.filter(product=product_id)
 
     def perform_create(self, serializer):
-        product_id = self.request.path.split("/")[-2]
+        product_id = self.request.path.split("/")[-3]
         product = Product.objects.get(pk=product_id)
         serializer.save(product=product)
+
+    def get_serializer_context(self, *args, **kwargs):
+        return {"request": self.request}
 
 
 class ReviewRudView(generics.RetrieveUpdateDestroyAPIView):
@@ -78,3 +94,7 @@ class ReviewRudView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Review.objects.all()
+
+    def get_serializer_context(self, *args, **kwargs):
+        return {"request": self.request}
+
