@@ -1,8 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
-from django.utils import timezone
-from django.utils.text import slugify
+from rest_framework.reverse import reverse as api_reverse
 
 
 class Company(models.Model):
@@ -15,6 +14,9 @@ class Company(models.Model):
     def __str__(self):
         return self.name
 
+    def get_api_url(self, request=None):
+        return api_reverse('api_v1:company-rud', kwargs={'pk': self.pk}, request=request)
+
 
 class Product(models.Model):
     company = models.ForeignKey('reviews.Company', on_delete=models.PROTECT, related_name='products')
@@ -23,8 +25,8 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        return reverse('product-update', kwargs={'pk': self.pk, 'slug': slugify(self.name)})
+    def get_api_url(self, request=None):
+        return api_reverse('api_v1:product-rud', kwargs={'pk': self.pk}, request=request)
 
 
 class Review(models.Model):
@@ -37,6 +39,6 @@ class Review(models.Model):
     def __str__(self):
         return str(self.stars) + " Stars"
 
-    def get_absolute_url(self):
-        return reverse('review-update', kwargs={'pk': self.pk})
+    def get_api_url(self, request=None):
+        return api_reverse('api_v1:review-rud', kwargs={'pk': self.pk}, request=request)
 
