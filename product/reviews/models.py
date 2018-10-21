@@ -9,7 +9,7 @@ class Company(models.Model):
 
     class Meta:
         verbose_name_plural = "companies"
-    account = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
 
     def __str__(self):
@@ -35,7 +35,7 @@ class Review(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.stars) + " Stars"
 
     def get_absolute_url(self):
         return reverse('review-update', kwargs={'pk': self.pk})
