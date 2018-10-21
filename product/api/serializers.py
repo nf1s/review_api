@@ -9,6 +9,7 @@ from reviews.models import Review, Company, Product
 
 class CompanySerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Company
         fields = ['url', 'name']
@@ -28,6 +29,7 @@ class CompanySerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Product
         fields = ['url', 'name']
@@ -38,11 +40,10 @@ class ProductSerializer(serializers.ModelSerializer):
         return obj.get_api_url(request=request)
 
 
-
 class ReviewSerializer(serializers.ModelSerializer):
-
     url = serializers.SerializerMethodField(read_only=True)
     product = ProductSerializer(read_only=True)
+
     class Meta:
         model = Review
         fields = ['comment', 'stars', 'date', 'url', 'product']
@@ -57,4 +58,3 @@ class ReviewSerializer(serializers.ModelSerializer):
     def get_url(self, obj):
         request = self.context.get("request")
         return obj.get_api_url(request=request)
-
