@@ -12,11 +12,11 @@ function firstTime {
 	python manage.py makemigrations
 	python manage.py migrate
 	
-	echo "create suoer user"
+	echo "create super user"
 	python manage.py createsuperuser
 		
-	echo "load database"
-	python manage.py loaddata reviews/fixtures/initial.json
+	#echo "load database"
+	#python manage.py loaddata reviews/fixtures/initial.json
 	
 	#echo "run tests"
 	#python manage.py test
