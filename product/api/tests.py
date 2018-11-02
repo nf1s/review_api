@@ -79,7 +79,7 @@ class CompanyAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
         response = self.client.put(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
 
     def test_post_item(self):
@@ -90,9 +90,8 @@ class CompanyAPITestCase(APITestCase):
         data = {"name":"another test product"}
         url = api_reverse('api_v1:product-create')
         response = self.client.post(url, data, format='json')
-        print(response.data)
 
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
 
     def test_user_login(self):
@@ -103,5 +102,4 @@ class CompanyAPITestCase(APITestCase):
 
         url = api_reverse('api_login')
         response = self.client.post(url, data)
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
