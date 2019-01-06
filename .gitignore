@@ -1,3 +1,6 @@
 .idea
 db.*
 *.pyc
+migrations
+*.db
+
