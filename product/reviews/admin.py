@@ -22,3 +22,5 @@ class ReviewAdmin(admin.ModelAdmin):
 admin.site.register(Company)
 admin.site.register(Product)
 admin.site.register(Review, ReviewAdmin)
+
+
