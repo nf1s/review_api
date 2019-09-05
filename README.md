@@ -6,9 +6,9 @@ Simple review Management tool
 
 ### Setup
 
-Use `Python 3` for back-end
+Use `Python 3.7` for back-end
 
-All the requirements have been described in `requirements.txt`. Make sure you add all your back-end requirements there as well!
+All the requirements have been described in `Pipfile`.
 Initial requirements include:
 
 - [Django](https://docs.djangoproject.com/en/1.11/) as the base framework
