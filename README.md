@@ -24,4 +24,4 @@ The application uses SQLite for the database by default for simplicity reasons.
 
     docker-compose up --build
 
-The application should be visible at `0.0.0.0:8000`
+The application should be visible at `127.0.0.1:8000`
