@@ -21,12 +21,13 @@ class AssignmentView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         with open(
-            os.path.join(os.path.dirname(settings.BASE_DIR), "README.md"),
-            encoding="utf-8",
+            os.path.join(settings.BASE_DIR, "README.md"), encoding="utf-8"
         ) as f:
             assignment_content = f.read()
 
-        context.update({"assignment_content": mark_safe(markdown(assignment_content))})
+        context.update(
+            {"assignment_content": mark_safe(markdown(assignment_content))}
+        )
 
         return context
 

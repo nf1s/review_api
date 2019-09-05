@@ -9,14 +9,15 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('reviews', '0001_initial'),
-    ]
+    dependencies = [("reviews", "0001_initial")]
 
     operations = [
         migrations.AlterField(
-            model_name='company',
-            name='account',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
-        ),
+            model_name="company",
+            name="account",
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+            ),
+        )
     ]

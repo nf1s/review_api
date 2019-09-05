@@ -1,4 +1,8 @@
-from django.core.validators import RegexValidator, MinValueValidator, MaxValueValidator
+from django.core.validators import (
+    RegexValidator,
+    MinValueValidator,
+    MaxValueValidator,
+)
 from django.db import models
 from django.conf import settings
 from rest_framework.reverse import reverse as api_reverse
@@ -21,7 +25,9 @@ class Company(models.Model):
     class Meta:
         verbose_name_plural = "Companies"
 
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE
+    )
     name = models.CharField(max_length=128, validators=[alphanumeric])
 
     def __str__(self):
@@ -43,7 +49,9 @@ class Product(models.Model):
     company = models.ForeignKey(
         "reviews.Company", on_delete=models.PROTECT, related_name="products"
     )
-    name = models.CharField("Product Name", max_length=128, validators=[alphanumeric])
+    name = models.CharField(
+        "Product Name", max_length=128, validators=[alphanumeric]
+    )
 
     def __str__(self):
         return self.name
@@ -79,4 +87,6 @@ class Review(models.Model):
         return str(self.stars) + " Stars"
 
     def get_api_url(self, request=None):
-        return api_reverse("api_v1:review-rud", kwargs={"pk": self.pk}, request=request)
+        return api_reverse(
+            "api_v1:review-rud", kwargs={"pk": self.pk}, request=request
+        )
