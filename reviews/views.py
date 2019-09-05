@@ -26,7 +26,9 @@ class AssignmentView(TemplateView):
         ) as f:
             assignment_content = f.read()
 
-        context.update({"assignment_content": mark_safe(markdown(assignment_content))})
+        context.update(
+            {"assignment_content": mark_safe(markdown(assignment_content))}
+        )
 
         return context
 

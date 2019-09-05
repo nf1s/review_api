@@ -11,17 +11,16 @@ encode_handler = api_settings.JWT_ENCODE_HANDLER
 User = get_user_model()
 
 
-
-
 class CompanyAPITestCase(APITestCase):
-
     def setUp(self):
-        user = User(username='testuser', email='test@test.com')
+        user = User(username="testuser", email="test@test.com")
         user.set_password("verystrongpassword")
         user.save()
 
-        company = Company.objects.create(user=user, name="testcompany")
-        product = Product.objects.create(company=company, name='testproduct')
+        self.company = Company.objects.create(user=user, name="testcompany")
+        self.product = Product.objects.create(
+            company=self.company, name="testproduct"
+        )
 
     def test_single_user(self):
         user_count = User.objects.count()
@@ -33,35 +32,34 @@ class CompanyAPITestCase(APITestCase):
 
     def test_get_list(self):
         data = {}
-        url = api_reverse('api_v1:company-create')
-        response = self.client.get(url, data, format='json')
+        url = api_reverse("api_v1:company-create")
+        response = self.client.get(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_post_item(self):
-        data = {"name":"another test company"}
-        url = api_reverse('api_v1:company-create')
-        response = self.client.post(url, data, format='json')
+        data = {"name": "another test company"}
+        url = api_reverse("api_v1:company-create")
+        response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_get_item(self):
         company = Company.objects.first()
         data = {}
         url = company.get_api_url()
-        response = self.client.get(url, data, format='json')
+        response = self.client.get(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_update_item(self):
         company = Company.objects.first()
         url = company.get_api_url()
 
-        data = {"name":"another test company"}
+        data = {"name": "another test company"}
 
-        response = self.client.post(url, data, format='json')
+        response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-        response = self.client.put(url, data, format='json')
+        response = self.client.put(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-
 
     def test_update_item_with_auth(self):
         """
@@ -69,37 +67,32 @@ class CompanyAPITestCase(APITestCase):
         """
         product = Product.objects.first()
         url = product.get_api_url()
-        data = {"name":"another test product"}
+        data = {"name": "another test product"}
         user = User.objects.first()
         payload = payload_handler(user)
         token = encode_handler(payload)
-        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + token)
+        self.client.credentials(HTTP_AUTHORIZATION="JWT " + token)
 
-        response = self.client.post(url, data, format='json')
+        response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-        response = self.client.put(url, data, format='json')
+        response = self.client.put(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-
-    def test_post_item(self):
+    def test_post_item_with_auth(self):
         user = User.objects.first()
         payload = payload_handler(user)
         token = encode_handler(payload)
-        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + token)
-        data = {"name":"another test product"}
-        url = api_reverse('api_v1:product-create')
-        response = self.client.post(url, data, format='json')
+        self.client.credentials(HTTP_AUTHORIZATION="JWT " + token)
+        data = {"name": "another test product"}
+        url = api_reverse("api_v1:product-create")
+        response = self.client.post(url, data, format="json")
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
 
     def test_user_login(self):
-        data = {
-            'username':'testuser',
-            'password':'verystrongpassword'
-        }
+        data = {"username": "testuser", "password": "verystrongpassword"}
 
-        url = api_reverse('api_login')
+        url = api_reverse("api_login")
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)

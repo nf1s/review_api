@@ -9,34 +9,81 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('reviews', '0005_auto_20181021_1641'),
-    ]
+    dependencies = [("reviews", "0005_auto_20181021_1641")]
 
     operations = [
         migrations.AlterField(
-            model_name='company',
-            name='name',
-            field=models.CharField(max_length=128, validators=[django.core.validators.RegexValidator('^[0-9a-zA-Z\\s]*$', 'Only alphanumeric characters are allowed.')]),
+            model_name="company",
+            name="name",
+            field=models.CharField(
+                max_length=128,
+                validators=[
+                    django.core.validators.RegexValidator(
+                        "^[0-9a-zA-Z\\s]*$",
+                        "Only alphanumeric characters are allowed.",
+                    )
+                ],
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='name',
-            field=models.CharField(max_length=128, validators=[django.core.validators.RegexValidator('^[0-9a-zA-Z\\s]*$', 'Only alphanumeric characters are allowed.')], verbose_name='Product Name'),
+            model_name="product",
+            name="name",
+            field=models.CharField(
+                max_length=128,
+                validators=[
+                    django.core.validators.RegexValidator(
+                        "^[0-9a-zA-Z\\s]*$",
+                        "Only alphanumeric characters are allowed.",
+                    )
+                ],
+                verbose_name="Product Name",
+            ),
         ),
         migrations.AlterField(
-            model_name='review',
-            name='comment',
-            field=models.CharField(max_length=128, validators=[django.core.validators.RegexValidator('^[0-9a-zA-Z\\s]*$', 'Only alphanumeric characters are allowed.')], verbose_name='Review comment'),
+            model_name="review",
+            name="comment",
+            field=models.CharField(
+                max_length=128,
+                validators=[
+                    django.core.validators.RegexValidator(
+                        "^[0-9a-zA-Z\\s]*$",
+                        "Only alphanumeric characters are allowed.",
+                    )
+                ],
+                verbose_name="Review comment",
+            ),
         ),
         migrations.AlterField(
-            model_name='review',
-            name='product',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='reviews', to='reviews.Product', validators=[django.core.validators.RegexValidator('^[0-9a-zA-Z\\s]*$', 'Only alphanumeric characters are allowed.')]),
+            model_name="review",
+            name="product",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name="reviews",
+                to="reviews.Product",
+                validators=[
+                    django.core.validators.RegexValidator(
+                        "^[0-9a-zA-Z\\s]*$",
+                        "Only alphanumeric characters are allowed.",
+                    )
+                ],
+            ),
         ),
         migrations.AlterField(
-            model_name='review',
-            name='stars',
-            field=models.IntegerField(validators=[django.core.validators.RegexValidator('^[0-9]*$', 'Only numeric digits are allowed.'), django.core.validators.MinValueValidator(1, 'Number of stars cannot be less than 1'), django.core.validators.MaxValueValidator(5, 'Number of stars cannot exceed 5')], verbose_name='Number of stars'),
+            model_name="review",
+            name="stars",
+            field=models.IntegerField(
+                validators=[
+                    django.core.validators.RegexValidator(
+                        "^[0-9]*$", "Only numeric digits are allowed."
+                    ),
+                    django.core.validators.MinValueValidator(
+                        1, "Number of stars cannot be less than 1"
+                    ),
+                    django.core.validators.MaxValueValidator(
+                        5, "Number of stars cannot exceed 5"
+                    ),
+                ],
+                verbose_name="Number of stars",
+            ),
         ),
     ]

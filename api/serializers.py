@@ -12,14 +12,16 @@ class CompanySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Company
-        fields = ['url', 'name']
-        read_only_fields = ['url']
+        fields = ["url", "name"]
+        read_only_fields = ["url"]
 
     def validate_name(self, value):
         request = self.context.get("request")
         company = Company.objects.filter(user=request.user)
         if company:
-            raise serializers.ValidationError("a company for this user already exists")
+            raise serializers.ValidationError(
+                "a company for this user already exists"
+            )
         return value
 
     def get_url(self, obj):
@@ -32,8 +34,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['url', 'name']
-        read_only_fields = ['url']
+        fields = ["url", "name"]
+        read_only_fields = ["url"]
 
     def get_url(self, obj):
         request = self.context.get("request")
@@ -46,14 +48,16 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        fields = ['comment', 'stars', 'date', 'url', 'product']
-        read_only_fields = ['date', 'product']
+        fields = ["comment", "stars", "date", "url", "product"]
+        read_only_fields = ["date", "product"]
 
     def validate_stars(self, value):
         if 0 < value <= 5:
             return value
         else:
-            raise serializers.ValidationError(" Number of Stars must be a number between 0 and 5")
+            raise serializers.ValidationError(
+                " Number of Stars must be a number between 0 and 5"
+            )
 
     def get_url(self, obj):
         request = self.context.get("request")

@@ -10,9 +10,8 @@ def login(request, **kwargs):
     if request.user.is_authenticated():
         return redirect(settings.LOGIN_REDIRECT_URL)
 
-    kwargs.update({
-        'template_name': 'auth/login.html',
-        'authentication_form': LoginForm,
-    })
+    kwargs.update(
+        {"template_name": "auth/login.html", "authentication_form": LoginForm}
+    )
 
     return django_auth_views.login(request, **kwargs)

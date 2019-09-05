@@ -1,5 +1,9 @@
 from rest_framework import generics
-from api.serializers import ReviewSerializer, CompanySerializer, ProductSerializer
+from api.serializers import (
+    ReviewSerializer,
+    CompanySerializer,
+    ProductSerializer,
+)
 from reviews.models import Company, Product, Review
 from api.permissions import IsOwnerOrReadOnly
 from rest_framework.permissions import IsAdminUser
@@ -11,7 +15,8 @@ class CompanyAPIView(generics.ListCreateAPIView):
     """
     API view provides rest endpoint to create/list companies
     """
-    lookup_field = 'pk'
+
+    lookup_field = "pk"
     serializer_class = CompanySerializer
 
     def get_queryset(self):
@@ -30,7 +35,7 @@ class CompanyRudView(generics.RetrieveUpdateDestroyAPIView):
     API view provides a rest endpoint to Retrieve/Update/Delete a company
     """
 
-    lookup_field = 'pk'
+    lookup_field = "pk"
     serializer_class = CompanySerializer
 
     def get_queryset(self):
@@ -48,7 +53,8 @@ class ProductAPIView(generics.ListCreateAPIView):
     """
     API view provides rest endpoint to create/list Products
     """
-    lookup_field = 'pk'
+
+    lookup_field = "pk"
     serializer_class = ProductSerializer
 
     def get_queryset(self):
@@ -69,7 +75,8 @@ class ProductRudView(generics.RetrieveUpdateDestroyAPIView):
     """
     API view provides a rest endpoint to Retrieve/Update/Delete a product
     """
-    lookup_field = 'pk'
+
+    lookup_field = "pk"
     serializer_class = ProductSerializer
 
     def get_queryset(self):
@@ -88,7 +95,8 @@ class ReviewAPIView(generics.ListCreateAPIView):
     """
     API view provides rest endpoint to create/list Reviews related to a certain product
     """
-    lookup_field = 'pk'
+
+    lookup_field = "pk"
     serializer_class = ReviewSerializer
 
     def get_queryset(self):
@@ -108,7 +116,8 @@ class ReviewRudView(generics.RetrieveUpdateDestroyAPIView):
     """
      Review Retrieve/Update/Delete View
      """
-    lookup_field = 'pk'
+
+    lookup_field = "pk"
     serializer_class = ReviewSerializer
 
     def get_queryset(self):
@@ -116,4 +125,3 @@ class ReviewRudView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_serializer_context(self, *args, **kwargs):
         return {"request": self.request}
-

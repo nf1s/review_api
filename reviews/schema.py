@@ -23,23 +23,31 @@ class Query(graphene.ObjectType):
     all_products = graphene.List(ProductType)
     all_reviews = graphene.List(ReviewType)
 
-    company = graphene.Field(CompanyType, id=graphene.Int(), name=graphene.String())
-    product = graphene.Field(ProductType, id=graphene.Int(), name=graphene.String())
-    review = graphene.Field(ReviewType, id=graphene.Int(), comment=graphene.String(), stars=graphene.Int())
-
+    company = graphene.Field(
+        CompanyType, id=graphene.Int(), name=graphene.String()
+    )
+    product = graphene.Field(
+        ProductType, id=graphene.Int(), name=graphene.String()
+    )
+    review = graphene.Field(
+        ReviewType,
+        id=graphene.Int(),
+        comment=graphene.String(),
+        stars=graphene.Int(),
+    )
 
     def resolve_all_companies(self, info, **kwargs):
         return Company.objects.all()
 
     def resolve_all_products(self, info, **kwargs):
-        return Product.objects.select_related('company').all()
+        return Product.objects.select_related("company").all()
 
     def resolve_all_reviews(self, info, **kwargs):
-        return Review.objects.select_related('product').all()
+        return Review.objects.select_related("product").all()
 
     def resolve_company(self, info, **kwargs):
-        id = kwargs.get('id')
-        name = kwargs.get('name')
+        id = kwargs.get("id")
+        name = kwargs.get("name")
 
         if id is not None:
             return Company.objects.get(pk=id)
@@ -50,8 +58,8 @@ class Query(graphene.ObjectType):
         return None
 
     def resolve_product(self, info, **kwargs):
-        id = kwargs.get('id')
-        name = kwargs.get('name')
+        id = kwargs.get("id")
+        name = kwargs.get("name")
 
         if id is not None:
             return Product.objects.get(pk=id)
@@ -61,13 +69,13 @@ class Query(graphene.ObjectType):
 
         return None
 
-
     def resolve_review(self, info, **kwargs):
-        id = kwargs.get('id')
+        id = kwargs.get("id")
 
         if id is not None:
             return Review.objects.get(pk=id)
 
         return None
+
 
 schema = graphene.Schema(query=Query)
