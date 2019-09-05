@@ -15,30 +15,31 @@ from reviews.models import Review
 
 
 class AssignmentView(TemplateView):
-    template_name = 'reviews/assignment.html'
+    template_name = "reviews/assignment.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        with open(os.path.join(os.path.dirname(settings.BASE_DIR), 'README.md'), encoding='utf-8') as f:
+        with open(
+            os.path.join(os.path.dirname(settings.BASE_DIR), "README.md"),
+            encoding="utf-8",
+        ) as f:
             assignment_content = f.read()
 
-        context.update({
-            'assignment_content': mark_safe(markdown(assignment_content))
-        })
+        context.update({"assignment_content": mark_safe(markdown(assignment_content))})
 
         return context
 
 
 class DashboardView(LoginRequiredMixin, ListView):
     model = Review
-    ordering = ('-date',)
-    context_object_name = 'reviews'
-    template_name = 'reviews/dashboard.html'
+    ordering = ("-date",)
+    context_object_name = "reviews"
+    template_name = "reviews/dashboard.html"
 
     def get_queryset(self):
         reviews = super().get_queryset()
-        reviews = reviews.select_related('company')
+        reviews = reviews.select_related("company")
 
         return reviews
 
@@ -46,4 +47,4 @@ class DashboardView(LoginRequiredMixin, ListView):
 class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     model = Review
     form_class = ReviewForm
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy("dashboard")

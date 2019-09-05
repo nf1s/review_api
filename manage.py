@@ -10,6 +10,12 @@ if __name__ == "__main__":
         # The above import may fail for some other reason. Ensure that the
         # issue is really that Django is missing to avoid masking other
         # exceptions on Python 2.
+        if settings.DEBUG:
+            if os.environ.get("RUN_MAIN") or os.environ.get("WERKZEUG_RUN_MAIN"):
+                import ptvsd
+
+                ptvsd.enable_attach(address=("0.0.0.0", 3000))
+                print("Attached remote debugger")
         try:
             import django
         except ImportError:

@@ -3,4 +3,4 @@ db.*
 *.pyc
 migrations
 *.db
-
+.env

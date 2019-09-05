@@ -7,7 +7,6 @@ function firstTime {
 	echo "activate virtual environment"
 	source ../venv/bin/activate
 	
-	cd product
 	echo "Model migrations"
 	python manage.py makemigrations
 	python manage.py migrate
@@ -31,7 +30,6 @@ function normalRun {
 	echo "activate virtual environment"
 	source ../venv/bin/activate
 
-	cd product
 	echo "runserver"
 	python manage.py runserver
 }
