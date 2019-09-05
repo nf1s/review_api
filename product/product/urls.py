@@ -24,3 +24,7 @@ urlpatterns = [
     url(r'^api/auth/$', obtain_jwt_token, name='api_login'),
     url(r'^admin/', admin.site.urls),
 ]
+
+admin.site.site_header = "Review API Admin"
+admin.site.site_title = "Review API Admin Portal"
+admin.site.index_title = "Welcome to Hem's Review API Admin Portal"

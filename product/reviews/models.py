@@ -17,7 +17,7 @@ max_stars = MaxValueValidator(5, 'Number of stars cannot exceed 5')
 
 class Company(models.Model):
     class Meta:
-        verbose_name_plural = "companies"
+        verbose_name_plural = "Companies"
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=128, validators=[alphanumeric])
@@ -32,6 +32,10 @@ class Company(models.Model):
 
 
 class Product(models.Model):
+
+    class Meta:
+        verbose_name_plural = "Products"
+
     company = models.ForeignKey('reviews.Company', on_delete=models.PROTECT, related_name='products')
     name = models.CharField('Product Name', max_length=128, validators=[alphanumeric])
 
@@ -45,6 +49,9 @@ class Product(models.Model):
 
 
 class Review(models.Model):
+    class Meta:
+        verbose_name_plural = "Reviews"
+
     product = models.ForeignKey('reviews.Product', on_delete=models.PROTECT,
                                 related_name='reviews', validators=[alphanumeric])
     comment = models.CharField('Review comment', max_length=128, validators=[alphanumeric])
