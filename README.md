@@ -26,5 +26,7 @@ flow the structure of .env.example
 ### Running the application
 
     docker-compose up --build
-
 The application should be visible at `127.0.0.1:8000`
+
+### Running tests
+    docker-compose run web python manage.py test
