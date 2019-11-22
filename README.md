@@ -9,6 +9,8 @@ Simple review Management tool
 Use `Python 3.7` for back-end
 
 All the requirements have been described in `Pipfile`.
+Docker must be installed
+
 Initial requirements include:
 
 - [Django](https://docs.djangoproject.com/en/1.11/) as the base framework
@@ -18,10 +20,13 @@ Initial requirements include:
 - [django-filter](https://pypi.org/project/django-filter/) dynamic queryset filtering from URL parameters.
 - [markdown](http://pythonhosted.org/Markdown/siteindex.html) for rendering markdown in HTML
 
-The application uses SQLite for the database by default for simplicity reasons.
+Add your enviroment variables in .env
+flow the structure of .env.example
 
 ### Running the application
 
     docker-compose up --build
-
 The application should be visible at `127.0.0.1:8000`
+
+### Running tests
+    docker-compose run web python manage.py test
