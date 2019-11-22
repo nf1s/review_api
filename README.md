@@ -32,9 +32,9 @@ The application should be visible at `127.0.0.1:8000`
     docker-compose run web python manage.py test
 
 ###
-GraphQl endpoint: /graphql
-Swagger doc: /api/swagger
-Redoc doc: /api/redoc
+    GraphQl endpoint: /graphql
+    Swagger doc: /api/swagger
+    Redoc doc: /api/redoc
 
 ### Known bugs
 
