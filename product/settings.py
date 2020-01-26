@@ -14,23 +14,22 @@ import os
 import datetime
 
 from dotenv import load_dotenv
-
+from .config import CONFIG
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-load_dotenv(os.path.join(BASE_DIR, ".env"))
+BASE_DIR = CONFIG.BASE_DIR
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ["SECRET_KEY"]
+SECRET_KEY = CONFIG.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = CONFIG.DEBUG
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
+ALLOWED_HOSTS = CONFIG.ALLOWED_HOSTS
 
 
 # Application definition
@@ -83,23 +82,8 @@ WSGI_APPLICATION = "product.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-#     }
-# }
 
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "HOST": "db",  # set in docker-compose.yml
-        "PORT": 5432,  # default postgres port
-    }
-}
+DATABASES = CONFIG.DATABASES
 
 
 # Password validation
@@ -144,7 +128,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = "/static/"
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Crispy forms
 # http://django-crispy-forms.readthedocs.io/
@@ -165,7 +150,7 @@ REST_FRAMEWORK = {
 }
 
 
-CORS_ORIGIN_WHITELIST = ("localhost:8080",)
+CORS_ORIGIN_WHITELIST = CONFIG.CORS_ORIGIN_WHITELIST
 
 
 JWT_AUTH = {
@@ -190,3 +175,8 @@ JWT_AUTH = {
     "JWT_AUTH_HEADER_PREFIX": "JWT",
     "JWT_AUTH_COOKIE": None,
 }
+
+if CONFIG.HEROKU:  # pragma: no cover
+    import django_heroku
+
+    django_heroku.settings(locals())

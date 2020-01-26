@@ -48,6 +48,8 @@ uritemplate="==3.0.0"
 urllib3=">=1.24.2"
 python-dotenv = "*"
 psycopg2-binary = "*"
+django-heroku = "*"
+dj-database-url = "*"
 drf-yasg = "*"
 
 [requires]
