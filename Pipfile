@@ -51,6 +51,7 @@ psycopg2-binary = "*"
 django-heroku = "*"
 dj-database-url = "*"
 drf-yasg = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
