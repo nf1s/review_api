@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c9b2f30ae14920cf22f04de2b315c50723390ba3335d28c24ef74aec5bc7bbce"
+            "sha256": "e7ebfb8efa4db2ffe4ed39046ec5e7e73c45d5ec0479f6a458ff59911a8b890b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -247,10 +247,10 @@
         },
         "packaging": {
             "hashes": [
-                "sha256:28b924174df7a2fa32c1953825ff29c61e2f5e082343165438812f00d3a7fc47",
-                "sha256:d9551545c6d761f3def1677baf08ab2a3ca17c56879e70fecba2fc4dde4ed108"
+                "sha256:170748228214b70b672c581a3dd610ee51f733018650740e98c7df862a583f73",
+                "sha256:e665345f9eef0c621aa0bf2f8d78cf6d21904eef16a93f020240b704a57f1334"
             ],
-            "version": "==19.2"
+            "version": "==20.1"
         },
         "promise": {
             "hashes": [
@@ -341,10 +341,10 @@
         },
         "pyparsing": {
             "hashes": [
-                "sha256:20f995ecd72f2a1f4bf6b072b63b22e2eb457836601e76d6e5dfcd75436acc1f",
-                "sha256:4ca62001be367f01bd3e92ecbb79070272a9d4964dce6a48a82ff0b8bc7e683a"
+                "sha256:4c830582a84fb022400b85429791bc551f1f4871c33f23e44f353119e92f969f",
+                "sha256:c342dccb5250c08d45fd6f8b4a559613ca603b57498511740e65cd11a2e7dcec"
             ],
-            "version": "==2.4.5"
+            "version": "==2.4.6"
         },
         "python-dotenv": {
             "hashes": [
@@ -372,10 +372,10 @@
         },
         "ruamel.yaml": {
             "hashes": [
-                "sha256:0db639b1b2742dae666c6fc009b8d1931ef15c9276ef31c0673cc6dcf766cf40",
-                "sha256:412a6f5cfdc0525dee6a27c08f5415c7fd832a7afcb7a0ed7319628aed23d408"
+                "sha256:91d6bfe4fce401a00388deb0f5d29e10d2d3683a868c1113ae16bbc351ceb6a4",
+                "sha256:966e5a049eebf011c90424b9ec7dab6358cee8de0907354b27a27f20a8c4c2ec"
             ],
-            "version": "==0.16.5"
+            "version": "==0.16.6"
         },
         "ruamel.yaml.clib": {
             "hashes": [
@@ -392,6 +392,7 @@
                 "sha256:a0ff786d2a7dbe55f9544b3f6ebbcc495d7e730df92a08434604f6f470b899c5",
                 "sha256:b1b7fcee6aedcdc7e62c3a73f238b3d080c7ba6650cd808bce8d7761ec484070",
                 "sha256:b66832ea8077d9b3f6e311c4a53d06273db5dc2db6e8a908550f3c14d67e718c",
+                "sha256:be018933c2f4ee7de55e7bd7d0d801b3dfb09d21dad0cce8a97995fd3e44be30",
                 "sha256:d0d3ac228c9bbab08134b4004d748cf9f8743504875b3603b3afbb97e3472947",
                 "sha256:d10e9dd744cf85c219bf747c75194b624cc7a94f0c80ead624b06bfa9f61d3bc",
                 "sha256:ea4362548ee0cbc266949d8a441238d9ad3600ca9910c3fe4e82ee3a50706973",
@@ -586,7 +587,6 @@
             ],
             "index": "pypi",
             "version": "==7.11.1"
-
         },
         "ipython-genutils": {
             "hashes": [
@@ -755,7 +755,6 @@
                 "sha256:55059a7a676e4e19498f1aad09b8313a38fcc0cdbe4fdddc0e9b06946d21b4bb"
             ],
             "version": "==16.7.9"
-
         },
         "wcwidth": {
             "hashes": [
