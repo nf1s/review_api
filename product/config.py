@@ -51,14 +51,14 @@ class Staging(Config):
     DEBUG = False
     DATABASES = {}
     DATABASES["default"] = dj_database_url.config(conn_max_age=600)
-    ALLOWED_HOSTS = ["review-api-staging.herokuapp.com"]
+    ALLOWED_HOSTS = ["review-it-api-staging.herokuapp.com"]
 
 
 class Prod(Config):
     DEBUG = False
     DATABASES = {}
     DATABASES["default"] = dj_database_url.config(conn_max_age=600)
-    ALLOWED_HOSTS = ["review-api.herokuapp.com"]
+    ALLOWED_HOSTS = ["review-it-api.herokuapp.com"]
 
 
 def get_config():
