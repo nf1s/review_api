@@ -50,6 +50,7 @@ python-dotenv = "*"
 psycopg2-binary = "*"
 django-heroku = "*"
 dj-database-url = "*"
+drf-yasg = "*"
 
 [requires]
 python_version = "3.7"

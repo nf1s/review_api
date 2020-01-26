@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "reviews",
     "rest_framework",
     "crispy_forms",
-    "rest_framework_swagger",
+    "drf_yasg",
     "graphene_django",
     "django.contrib.admin",
     "django.contrib.auth",
