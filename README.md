@@ -4,8 +4,11 @@
 Simple review Management tool
 
 Check out live demo [here](https://review-it-api.herokuapp.com)
+
 [GraphQL](https://review-it-api.herokuapp.com/graphql)
+
 [Swagger Documentation](https://review-it-api.herokuapp.com/api/swagger)
+
 [Redoc Documentation](https://review-it-api.herokuapp.com/api/redoc)
 
 ### Setup
