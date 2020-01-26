@@ -30,3 +30,13 @@ The application should be visible at `127.0.0.1:8000`
 
 ### Running tests
     docker-compose run web python manage.py test
+
+###
+    GraphQl endpoint: /graphql
+    Swagger doc: /api/swagger
+    Redoc doc: /api/redoc
+
+### Known bugs
+
+drf_yasg has problems with views generating multiple api endpoints
+its does not affect the functionality though
